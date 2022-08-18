@@ -65,8 +65,14 @@ super + {o,i}
   bspc wm -h on
 
 # Focus or send to the given desktop
-super + {_,shift + }{1-9,0}
+# qwerty mode
+# super + {_,shift + }{1-9,0}
+# azerty mode
+super + {_,shift + }{ampersand,eacute,quotedbl,apostrophe,parenleft,section,egrave,exclam,ccedilla,agrave}
   bspc {desktop -f,node -d} '^{1-9,10}'
+
+super + &
+  bspc desktop -f 1
 
 #
 # Preselect
@@ -137,3 +143,10 @@ shift + alt + x
 # # Dashboard
 # super + d
 #   dashboard
+
+XF86AudioRaiseVolume
+    pactl set-sink-volume 0 +5%
+XF86AudioLowerVolume
+    pactl set-sink-volume 0 -5%
+XF86AudioMute
+    pactl set-sink-mute 0 toggle

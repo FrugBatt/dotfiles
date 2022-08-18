@@ -50,7 +50,8 @@ fi
 
 setxkbmap fr &
 $HOME/.config/scripts/display.sh
-feh --no-fehbg --bg-scale $HOME/wallpaper.png &
+~/.fehbg &
+#feh --no-fehbg --bg-scale $HOME/wallpaper.png &
 xsetroot -cursor_name left_ptr
 picom -f &
 exec bspwm
