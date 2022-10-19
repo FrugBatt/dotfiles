@@ -1,6 +1,15 @@
 # dotfiles
 My personal dotfiles
 
+# System informations
+- OS : ArchLinux
+- WM : bspwm
+- Bar : polybar
+- Terminal Emulator : alacritty
+- Browser : firefox
+- Editor : neovim
+- PDF viewer : zathura
+
 # Packages
 ## Fonts
 ```
