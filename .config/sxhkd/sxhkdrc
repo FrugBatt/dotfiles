@@ -116,7 +116,7 @@ super + {Left,Down,Up,Right}
 
 # Terminal emulator
 super + Return
-  alacritty
+  kitty
 
 # Program launcher
 super + @space
@@ -130,16 +130,16 @@ super + Escape
 shift + alt + x
   betterlockscreen -l dimblur
 
-# # Take screenshot
-# Print
-#   flameshot full -p ~/Pictures/screenshots/
-# 
-# shift + Print
-#   flameshot gui -p ~/Pictures/screenshots/
-# 
-# super + Print
-#   flameshot screen -p ~/Pictures/screenshots/
-# 
+# Take screenshot
+Print
+  flameshot full -p ~/images/screenshots/
+
+shift + Print
+  flameshot gui -p ~/images/screenshots/
+
+super + Print
+  flameshot screen -p ~/images/screenshots/
+
 # # Dashboard
 # super + d
 #   dashboard

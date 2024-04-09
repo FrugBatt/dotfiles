@@ -1,21 +1,40 @@
-require "core"
-require "core.options"
+vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
+vim.g.mapleader = " "
 
-require("core.utils").load_mappings()
+-- bootstrap lazy and all plugins
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
--- setup packer + plugins
-local fn = vim.fn
-local install_path = fn.stdpath "data" .. "/site/pack/packer/opt/packer.nvim"
-
-if fn.empty(fn.glob(install_path)) > 0 then
-  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#1e222a" })
-  print "Cloning packer .."
-  fn.system { "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path }
-
-  -- install plugins + compile their configs
-  vim.cmd "packadd packer.nvim"
-  require "plugins"
-  vim.cmd "PackerSync"
+if not vim.loop.fs_stat(lazypath) then
+  local repo = "https://github.com/folke/lazy.nvim.git"
+  vim.fn.system { "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath }
 end
 
-pcall(require, "custom")
+vim.opt.rtp:prepend(lazypath)
+
+local lazy_config = require "configs.lazy"
+
+-- load plugins
+require("lazy").setup({
+  {
+    "NvChad/NvChad",
+    lazy = false,
+    branch = "v2.5",
+    import = "nvchad.plugins",
+    config = function()
+      require "options"
+    end,
+  },
+
+  { import = "plugins" },
+}, lazy_config)
+
+-- load theme
+dofile(vim.g.base46_cache .. "defaults")
+dofile(vim.g.base46_cache .. "statusline")
+
+require "nvchad.autocmds"
+
+vim.schedule(function()
+  require "mappings"
+  require "options"
+end)
